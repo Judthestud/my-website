@@ -24,3 +24,236 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes waveApproachSlow {
+  0% {
+    transform: translate(-50%, -15%) scaleX(0.5) scaleY(0.5);
+    opacity: 0.03;
+  }
+  50% {
+    transform: translate(-50%, 20%) scaleX(0.9) scaleY(0.8);
+    opacity: 0.08;
+  }
+  100% {
+    transform: translate(-50%, 60%) scaleX(1.5) scaleY(1.2);
+    opacity: 0.02;
+  }
+}
+
+@keyframes waveApproachMedium {
+  0% {
+    transform: translate(-50%, -10%) scaleX(0.6) scaleY(0.6);
+    opacity: 0.06;
+  }
+  50% {
+    transform: translate(-50%, 35%) scaleX(1.2) scaleY(1.0);
+    opacity: 0.14;
+  }
+  100% {
+    transform: translate(-50%, 80%) scaleX(1.8) scaleY(1.3);
+    opacity: 0.02;
+  }
+}
+
+@keyframes waveApproachFast {
+  0% {
+    transform: translate(-50%, 0%) scaleX(0.7) scaleY(0.7);
+    opacity: 0.1;
+  }
+  50% {
+    transform: translate(-50%, 45%) scaleX(1.5) scaleY(1.2);
+    opacity: 0.18;
+  }
+  100% {
+    transform: translate(-50%, 110%) scaleX(2.3) scaleY(1.6);
+    opacity: 0.01;
+  }
+} 
+
+/* Animation speeds (cinematic pacing) */
+.animate-wave-approach-slow {
+  animation: waveApproachSlow 12s ease-out infinite;
+}
+
+.animate-wave-approach-medium {
+  animation: waveApproachMedium 9s ease-out infinite;
+}
+
+.animate-wave-approach-fast {
+  animation: waveApproachFast 7s ease-out infinite;
+} 
+
+.text-glow {
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.08),
+    0 0 30px rgba(125, 211, 252, 0.14);
+} 
+
+@keyframes shootingStar {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(30deg) scaleX(0.35);
+  }
+  10% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(180px, 180px, 0) rotate(30deg) scaleX(1);
+  }  
+}  
+
+@keyframes shootingStarReverse {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(-45deg) scaleX(0.35);
+  }
+  10% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(140px, -140px, 0) rotate(-45deg) scaleX(1);
+  }
+} 
+
+.shooting-star {
+  position: absolute;
+  width: 120px;
+  height: 2px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to right,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0.15) 30%,
+    rgba(180,220,255,0.7) 70%,
+    rgba(255,255,255,1) 100%
+  );
+  filter: blur(0.5px);
+  box-shadow:
+    0 0 6px rgba(255,255,255,0.25),
+    0 0 14px rgba(125,211,252,0.18);
+  opacity: 0;
+}  
+@keyframes slowFloat {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -52%) scale(1.02);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+} 
+@keyframes waterShimmer {
+  0% {
+    opacity: 0.25;
+    transform: translateX(-2%);
+  }
+  50% {
+    opacity: 0.45;
+    transform: translateX(2%);
+  }
+  100% {
+    opacity: 0.25;
+    transform: translateX(-2%);
+  }
+} 
+@keyframes homeFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(12px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.animate-homeFadeIn {
+  animation: homeFadeIn 1.2s ease-out forwards;
+} 
+@keyframes shootingStarUpLeft {
+  0% {
+    transform: translate(0, 0) rotate(-28deg) scale(0.7);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(420px, -260px) rotate(-28deg) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes shootingStarFastRightToLeft {
+  0% {
+    transform: translate(0, 0) scale(0.8);
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  90% {
+    transform: translate(-900px, 0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-1000px, 0) scale(0.9);
+    opacity: 0;
+  }
+} 
+@keyframes pulseSlow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translateX(-50%) scaleY(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateX(-50%) scaleY(1.05);
+  }
+}
+
+.animate-pulseSlow {
+  animation: pulseSlow 6s ease-in-out infinite;
+} 
+@keyframes pulseSlow {
+  0%, 100% {
+    opacity: 0.45;
+    transform: translateX(-50%) scaleY(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateX(-50%) scaleY(1.04);
+  }
+}
+
+.animate-pulseSlow {
+  animation: pulseSlow 7s ease-in-out infinite;
+} 
+@keyframes waveSlow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-waveSlow {
+  animation: waveSlow 25s linear infinite;
+} 
