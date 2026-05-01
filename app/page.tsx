@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { getTestProducts } from "@/lib/shopify-test";
 import { FaInstagram, FaTiktok } from "react-icons/fa";
+import { Suspense } from "react";
 
-export default function Home() {
+
+function HomeContent() { 
   const [showMenu, setShowMenu] = useState(false);
   const [showBooking, setShowBooking] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
@@ -930,4 +932,11 @@ return (
    </main>
  </>
 );
+} 
+export default function Home() {
+  return (
+    <Suspense fallback={null}>
+      <HomeContent />
+    </Suspense>
+  );
 } 
