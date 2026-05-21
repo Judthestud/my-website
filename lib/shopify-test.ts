@@ -2,12 +2,32 @@ import { shopifyFetch } from "./shopify";
 
 const TEST_QUERY = `
   query {
-    products(first: 3) {
+    products(first: 12) {
       edges {
         node {
           id
           title
           handle
+          description
+          onlineStoreUrl
+          featuredImage {
+            url
+            altText
+          }
+          priceRange {
+            minVariantPrice {
+              amount
+              currencyCode
+            }
+          }
+          images(first: 5) {
+            edges {
+              node {
+                url
+                altText
+              }
+            }
+          }
         }
       }
     }
@@ -16,4 +36,4 @@ const TEST_QUERY = `
 
 export async function getTestProducts() {
   return shopifyFetch(TEST_QUERY);
-} 
+}

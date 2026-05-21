@@ -1,5 +1,7 @@
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
+import { createZoomMeeting } from "@/lib/zoom";
+
 const nodemailer = require("nodemailer");
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -16,15 +18,39 @@ export async function POST(req: Request) {
       process.env.STRIPE_WEBHOOK_SECRET!
     );
   } catch (err) {
+    console.error("Webhook error:", err);
     return NextResponse.json({ error: "Webhook error" }, { status: 400 });
   }
 
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as any;
 
+    console.log("Session metadata:", session.metadata);
+
     const customerEmail = session.customer_details?.email;
 
-    if (!customerEmail) return NextResponse.json({ received: true });
+    if (!customerEmail) {
+      return NextResponse.json({ received: true });
+    }
+
+    const selectedDate =
+      session?.metadata?.selectedDate || "Selected during booking";
+
+    const selectedTime =
+      session?.metadata?.selectedTime || "Selected during booking";
+
+    const service =
+      session?.metadata?.service || "Spiritual Guidance Session";
+
+    const zoomMeeting = await createZoomMeeting({
+      topic: service,
+      startTime: `${selectedDate}T14:00:00`,
+      duration: 60,
+    });
+
+    const zoomLink = zoomMeeting?.join_url;
+
+    console.log("Zoom meeting created:", zoomLink);
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -34,29 +60,51 @@ export async function POST(req: Request) {
       },
     });
 
+    // 1. Send confirmation to client
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: customerEmail,
-      subject: "Your Session Is Confirmed",
+      subject: "Your Spiritual Guidance Session Is Confirmed",
       text: `
 Your session is confirmed.
 
-Date: ${session?.metadata?.date || "Selected during booking"}
-Time: ${session?.metadata?.time || "Selected during booking"}
+Service: ${service}
+Date: ${selectedDate}
+Time: ${selectedTime}
 
-Next step:
-If you haven’t already completed your Pre-State Alignment Form, please do so here:
-https://docs.google.com/forms/d/e/1FAIpQLSdFZKc8j4Y1TNEyZcRv5-rA82ScQskr52C44nC7hldkfKvTJw/viewform
+Zoom Link:
+${zoomLink || "Zoom link will be sent shortly."}
 
-If you already completed it, you’re all set.
+Please arrive a few minutes early and come with an open mind.
 
 Looking forward to connecting.
 
-— Judson
-      `,
+- Judson
+`,
     });
 
-    console.log("Email sent to:", customerEmail);
+    // 2. Send session details to you
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
+      subject: "New Paid Spiritual Guidance Session",
+      text: `
+New session booked.
+
+Client Email: ${customerEmail}
+
+Service: ${service}
+Date: ${selectedDate}
+Time: ${selectedTime}
+
+Zoom Link:
+${zoomLink || "Zoom link unavailable."}
+
+- System
+`,
+    });
+
+    console.log("Emails sent to client and you");
   }
 
   return NextResponse.json({ received: true });
