@@ -592,18 +592,13 @@ return (
      <div className="mx-auto mt-10 grid max-w-7xl grid-cols-2 gap-15 px-4 sm:grid-cols-4">
          {products.map((product: any) => (
         
-      <a
-         key={product.node?.id}
-         href={
-               product.node?.onlineStoreUrl?.replace(
-               "https://thealignmentfield.com",
-               "https://v0wmpa-a1.myshopify.com"
-               ) || "#"
-              }
-               target="_blank"
-               rel="noopener noreferrer"
-               className="group overflow-hidden rounded-[20px] border border-white/10 bg-black/35 backdrop-blur-md transition duration-500 hover:-translate-y-1 hover:border-purple-300/40 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(168,85,247,0.18)]"
-             > 
+     <a
+       key={product.node?.id}
+       href={`https://v0wmpa-a1.myshopify.com/products/${product.node?.handle}`}
+       target="_blank"
+       rel="noopener noreferrer"
+       className="group overflow-hidden rounded-[20px] border border-white/10 bg-black/35 backdrop-blur-md transition duration-500 hover:-translate-y-1 hover:border-purple-300/40 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(168,85,247,0.18)]"
+      > 
              <div className="relative h-[220px] overflow-hidden">
               <img
           src={
