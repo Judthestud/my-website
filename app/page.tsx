@@ -40,7 +40,7 @@ const goToView = (view: string) => {
   setSelectedImageIndex(null);
   setActiveView(view);
 
-  if (view === "home") {
+  if (view === "home") { 
     router.push("/");
   } else {
     router.push(`/?step=${view}`);
@@ -185,28 +185,27 @@ return (
 
   <main className="relative min-h-screen overflow-x-hidden bg-black">
     
-     {/* Top Nav */}
-  <div className="fixed left-0 right-0 top-0 z-[60] flex items-center justify-between px-10 py-6 text-white">
-   
-    {/* Logo */}
-    <button
-    onClick={resetToHome}
-      className="flex h-14 w-14 items-center justify-center rounded-full border border-white/30 bg-black/20 text-xl tracking-widest backdrop-blur-md"
-    >
-      N
-    </button>
+   {/* Top Nav */}
+<div className="fixed left-0 right-0 top-0 z-[9999] px-4 py-6 text-white md:px-10">
 
-    {/* Center Nav */}
-    <div className="flex-1 flex justify-center">
-      <div className="hidden h-8 items-center gap-12 text-xs uppercase tracking-[0.25em] md:flex">
-       
-        {/* Home */}
-        <button
-        onClick={resetToHome} 
-          className={navClass(isHome)}
-        >
-          HOME
-        </button>
+  {/* Logo */}
+  <button
+    onClick={resetToHome}
+    className="absolute left-4 top-6 flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-black/20 text-xl tracking-widest backdrop-blur-md md:left-10 md:h-14 md:w-14"
+  >
+    N
+  </button>
+
+  {/* Center Nav */}
+  <div className="hidden h-8 items-center justify-center gap-12 text-xs uppercase tracking-[0.25em] md:flex">
+
+      {/* Home */}
+      <button
+        onClick={resetToHome}
+        className={navClass(isHome)}
+      >
+        HOME
+      </button> 
 
        {/* Gallery */}
         <button
@@ -248,16 +247,91 @@ return (
         CONTACT
       </button> 
       </div>
-    </div>
 
     {/* Menu Button */}
-    <button
-      onClick={() => setShowMenu(true)}
-      className="rounded-2xl border border-white/20 bg-black/20 px-6 py-3 text-xs uppercase tracking-[0.3em] text-white/85 backdrop-blur-md transition hover:border-purple-300/50 hover:bg-purple-500/10"
-    >
-      ✦ MENU
-    </button>
-  </div> 
+     <button
+        onClick={() => setShowMenu((prev) => !prev)}
+        className="absolute right-4 top-6 z-[10001] rounded-2xl border border-white/20 bg-black/30 px-4 py-3 text-xs uppercase tracking-[0.25em] text-white/85 backdrop-blur-md transition hover:border-purple-300/50 hover:bg-purple-500/10 md:right-10 md:top-8 md:px-6 md:tracking-[0.3em]"
+     >
+    ✦ MENU
+     </button>
+     </div>  
+
+   {showMenu && (
+  <div className="fixed inset-0 z-[10000] bg-black/40 backdrop-blur-xl">
+
+    <div className="flex flex-col items-center justify-center gap-8 pt-32 text-sm uppercase tracking-[0.35em] text-white">
+
+      <button
+        onClick={() => {
+          resetToHome()
+          setShowMenu(false)
+        }}
+        className="transition duration-300 hover:scale-110 hover:text-purple-200 hover:drop-shadow-[0_0_18px_rgba(216,180,254,0.95)]"
+      >
+        HOME
+      </button>
+
+      <button
+        onClick={() => {
+          goToView("guidance")
+          setShowMenu(false)
+        }}
+        className="transition duration-300 hover:scale-110 hover:text-purple-200 hover:drop-shadow-[0_0_18px_rgba(216,180,254,0.95)]"
+      >
+        SPIRITUAL GUIDANCE
+      </button>
+
+      <button
+        onClick={() => {
+          goToView("gallery")
+          setShowMenu(false)
+        }}
+        className="transition duration-300 hover:scale-110 hover:text-purple-200 hover:drop-shadow-[0_0_18px_rgba(216,180,254,0.95)]"
+      >
+        GALLERY
+      </button>
+
+      <button
+        onClick={() => {
+          goToView("modeling")
+          setShowMenu(false)
+        }}
+        className="transition duration-300 hover:scale-110 hover:text-purple-200 hover:drop-shadow-[0_0_18px_rgba(216,180,254,0.95)]"
+      >
+        MODELING
+      </button>
+
+      <button
+        onClick={() => {
+          goToView("about")
+          setShowMenu(false)
+        }}
+        className="transition duration-300 hover:scale-110 hover:text-purple-200 hover:drop-shadow-[0_0_18px_rgba(216,180,254,0.95)]"
+      >
+        ABOUT
+      </button>
+
+      <button
+        onClick={() => {
+          goToView("contact")
+          setShowMenu(false)
+        }}
+        className="transition duration-300 hover:scale-110 hover:text-purple-200 hover:drop-shadow-[0_0_18px_rgba(216,180,254,0.95)]"
+      >
+        CONTACT
+      </button>
+
+      <button
+        onClick={() => setShowMenu(false)}
+        className="mt-8 text-xs text-white/40 transition hover:text-white/80"
+      >
+        CLOSE
+      </button>
+
+    </div>
+  </div>
+)} 
 
    {/* Vision Background */}
  <div className="pointer-events-none absolute inset-0 z-0 bg-black">
