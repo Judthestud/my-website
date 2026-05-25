@@ -635,7 +635,7 @@ return (
                 </p> 
 
                 <span className="text-[9px] uppercase tracking-[0.25em] text-white/45 transition group-hover:text-white">
-                  View Piece TEST →
+                  View Piece →
                 </span>
               </div>
             </div>
