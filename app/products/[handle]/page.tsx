@@ -1,8 +1,10 @@
-export default function ProductPage({
+export default async function ProductPage({
   params,
 }: {
-  params: { handle: string };
+  params: Promise<{ handle: string }>;
 }) {
+  const { handle } = await params;
+
   return (
     <main className="min-h-screen bg-black text-white flex items-center justify-center">
       <div className="text-center">
@@ -11,7 +13,7 @@ export default function ProductPage({
         </p>
 
         <h1 className="mt-4 text-4xl font-light">
-          {params.handle.replaceAll("-", " ")}
+          {handle.replaceAll("-", " ")}
         </h1>
 
         <a
