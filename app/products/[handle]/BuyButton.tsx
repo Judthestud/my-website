@@ -15,7 +15,7 @@ export default function BuyButton({ variantId }: { variantId: string }) {
     console.log("CHECKOUT DATA:", data);
 
     if (data.checkoutUrl) {
-      window.open(data.checkoutUrl, "_blank");
+   window.location.href = data.checkoutUrl; 
     }
   }
 
