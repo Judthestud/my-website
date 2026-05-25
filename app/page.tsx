@@ -112,7 +112,7 @@ useEffect(() => {
       const res = await fetch("/api/shopify-test");
       const data = await res.json();
 
-      setShopifyData(data);
+      setShopifyData(data); 
 
       const edges = data?.products?.edges || [];
       setProducts(edges);
@@ -632,10 +632,10 @@ return (
                         product.node.priceRange.minVariantPrice.amount
                       ).toFixed(2)}`
                     : ""}
-                </p>
+                </p> 
 
                 <span className="text-[9px] uppercase tracking-[0.25em] text-white/45 transition group-hover:text-white">
-                  View Piece →
+                  View Piece TEST →
                 </span>
               </div>
             </div>
