@@ -7,7 +7,11 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function POST(req: Request) {
   const body = await req.text();
-  const sig = req.headers.get("stripe-signature")!;
+  const sig = req.headers.get("stripe-signature");
+
+  if (!sig) {
+    return NextResponse.json({ error: "Missing Stripe signature" }, { status: 400 });
+  }
 
   let event: Stripe.Event;
 
@@ -17,15 +21,13 @@ export async function POST(req: Request) {
       sig,
       process.env.STRIPE_WEBHOOK_SECRET!
     );
-  } catch (err) {
-    console.error("Webhook error:", err);
+  } catch (err: any) {
+    console.error("Webhook error:", err?.message || err);
     return NextResponse.json({ error: "Webhook error" }, { status: 400 });
   }
 
   if (event.type === "checkout.session.completed") {
-    const session = event.data.object as any;
-
-    console.log("Session metadata:", session.metadata);
+    const session = event.data.object as Stripe.Checkout.Session;
 
     const customerEmail = session.customer_details?.email;
 
@@ -34,13 +36,13 @@ export async function POST(req: Request) {
     }
 
     const selectedDate =
-      session?.metadata?.selectedDate || "Selected during booking";
+      session.metadata?.selectedDate || "Selected during booking";
 
     const selectedTime =
-      session?.metadata?.selectedTime || "Selected during booking";
+      session.metadata?.selectedTime || "Selected during booking";
 
     const service =
-      session?.metadata?.service || "Spiritual Guidance Session";
+      session.metadata?.service || "Spiritual Guidance Session";
 
     const zoomMeeting = await createZoomMeeting({
       topic: service,
@@ -50,8 +52,6 @@ export async function POST(req: Request) {
 
     const zoomLink = zoomMeeting?.join_url;
 
-    console.log("Zoom meeting created:", zoomLink);
-
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -60,7 +60,6 @@ export async function POST(req: Request) {
       },
     });
 
-    // 1. Send confirmation to client
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: customerEmail,
@@ -83,7 +82,6 @@ Looking forward to connecting.
 `,
     });
 
-    // 2. Send session details to you
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
@@ -104,7 +102,7 @@ ${zoomLink || "Zoom link unavailable."}
 `,
     });
 
-    console.log("Emails sent to client and you");
+    console.log("Zoom link emails sent successfully");
   }
 
   return NextResponse.json({ received: true });

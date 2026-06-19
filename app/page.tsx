@@ -48,10 +48,8 @@ const goToView = (view: string) => {
 };
 
 const goToGuideForm = () => {
-  setShowMenu(false);
-  setSelectedImageIndex(null);
-  sessionStorage.setItem("cameFromGuideForm", "true");
-  router.push("/guide-form");
+  window.location.href =
+    "https://docs.google.com/forms/d/e/1FAIpQLScP8xzepNwXcA5GIit1uDPWrJ_v2NtJEn5UA7V3mrKUkRNm3A/viewform?usp=header";
 }; 
 
 const resetToHome = () => {
@@ -231,12 +229,12 @@ return (
           ABOUT
        </button> 
 
-        {/* Spiritual Guidance */}
+        {/* Authentic Transformation */}
        <button
           onClick={() => goToView("guidance")}
           className={navClass(activeView === "guidance")}
         >
-         SPIRITUAL GUIDANCE
+         AUTHENTIC TRANSFORMATION 
        </button> 
 
        {/* Contact */}
@@ -279,7 +277,7 @@ return (
         }}
         className="transition duration-300 hover:scale-110 hover:text-purple-200 hover:drop-shadow-[0_0_18px_rgba(216,180,254,0.95)]"
       >
-        SPIRITUAL GUIDANCE
+        AUTHENTIC TRANSFORMATION
       </button>
 
       <button
@@ -406,9 +404,9 @@ return (
        </p> 
 
       <p className="mt-8 max-w-3xl text-base leading-8 text-white/85 md:text-lg">
-        A sacred digital space for reflection, clarity, creativity, and alignment.
-        Explore the gallery, learn more about the work, or move directly into guidance
-        when YOU feel called.
+       Practical guidance for individuals navigating identity loss, heartbreak,
+       uncertainty, and life's hardest transitions. Rebuild your foundation,
+       regain clarity, and create your next chapter. 
       </p>  
 
        <div className="mt-24 grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
@@ -419,7 +417,7 @@ return (
          Clarity
         </p>
         <p className="mt-4 text-sm leading-7 text-white/60">
-          Gain insight into your current path and the patterns that may be keeping you from your TRUE DIVINE SELF.
+          Gain insight into your current path and the patterns that may be keeping you from your TRUE SELF.
        </p>
   </div>
 
@@ -433,27 +431,27 @@ return (
           </p>
      </div>
 
-      {/* Remembering */}
+      {/* Reinvention */}
         <div className="group rounded-3xl border border-white/10 bg-black/30 p-8 backdrop-blur-md transition-all duration-500 hover:scale-[1.02] hover:border-purple-300/30 hover:shadow-[0_0_40px_rgba(168,85,247,0.25)]">
          <p className="text-xs uppercase tracking-[0.35em] text-purple-200/80">
-          Remembering
+          Reinvention 
          </p>
          <p className="mt-4 text-sm leading-7 text-white/60">
-           Start remembering who you are as divine consciousness. 
-       </p> 
+           Create new habits, routines, and beliefs that support the person you're becoming.
+         </p>   
   </div>
 
 </div>
 
-      {/* Spiritual Guidance FIRST */}
+      {/* One On One GUIDANCE */}
 <div className="mt-16 w-full max-w-3xl rounded-3xl border border-purple-300/25 bg-black/25 p-6 text-center backdrop-blur-md shadow-[0_0_45px_rgba(168,85,247,0.15)]">
   <p className="text-xs uppercase tracking-[0.4em] text-purple-200/70">
-    Spiritual Guidance
+    One On One GUIDANCE 
   </p>
 
   <p className="mt-4 text-sm leading-7 text-white/90">
-    Learn more about the guidance experience, how sessions work, and whether this path feels aligned for you.
-  </p>
+    Learn more about the 1:1 guidance process, how sessions work, and whether this is the right next step for your journey.
+     </p>
 
   <button
    onClick={() => {
@@ -461,7 +459,7 @@ return (
   }} 
     className="mt-6 rounded-full border border-purple-300/40 bg-purple-500/10 px-8 py-3 text-xs uppercase tracking-[0.25em] text-white transition-all duration-500 hover:scale-105 hover:bg-purple-400/20 hover:shadow-[0_0_45px_rgba(168,85,247,0.35)]"
   >
-    Spiritual Guidance →
+    One On One Guidance →
   </button> 
 </div>
 
@@ -472,27 +470,28 @@ return (
   </p>
 
   <p className="mt-3 text-sm leading-7 text-white/60">
-    Fill out the form to share a little about yourself and what you’re seeking guidance with.
+    Fill out the form to share a little about yourself and what you're seeking guidance with.
   </p>
 
   <button
-  onClick={goToGuideForm} 
-  className="mt-6 rounded-full border border-purple-300/40 bg-purple-500/15 px-8 py-3 text-xs uppercase tracking-[0.25em] text-white transition-all duration-500 hover:scale-105 hover:bg-purple-400/25 hover:shadow-[0_0_45px_rgba(168,85,247,0.35)]"
->
-  Fill Out Guidance Form →
-</button> 
+    onClick={goToGuideForm}
+    className="mt-6 rounded-full border border-purple-300/40 bg-purple-500/15 px-8 py-3 text-xs uppercase tracking-[0.25em] text-white transition-all duration-500 hover:scale-105 hover:bg-purple-400/25 hover:shadow-[0_0_45px_rgba(168,85,247,0.35)]"
+  >
+    Fill Out Guidance Form →
+  </button>
 
   <p className="mt-4 text-xs text-white/40">
     You will be guided to scheduling immediately after.
   </p>
-</div>  
-</div>  
+</div> 
+
+</div>
 )} 
 
     {/* About Me */}
-{activeView === "about" && ( 
- <div className="relative z-20 min-h-screen overflow-y-auto bg-black/70 backdrop-blur-md">
-     <div className="mx-auto grid min-h-screen w-full max-w-[1400px] grid-cols-1 gap-6 px-4 pt-32 pb-12 md:grid-cols-2 md:px-10">
+    {activeView === "about" && ( 
+     <div className="relative z-20 min-h-screen overflow-y-auto bg-black/70 backdrop-blur-md">
+      <div className="mx-auto grid min-h-screen w-full max-w-[1400px] grid-cols-1 gap-6 px-4 pt-32 pb-12 md:grid-cols-2 md:px-10">
        
       {/* Left side image */}
       <div className="flex h-fit w-full items-start justify-center pt-6 md:sticky md:top-10">
@@ -871,79 +870,58 @@ return (
 </div>
 )} 
 
-   {activeView === "guidance" ? ( 
-     <div
-       className="fixed inset-0 z-40 overflow-y-auto px-6 pb-24 pt-32 text-white transition-opacity duration-500 opacity-100"
-
-   >
+  {activeView === "guidance" && (
+  <div className="fixed inset-0 z-40 overflow-y-auto px-6 pb-24 pt-32 text-white transition-opacity duration-500 opacity-100">
     <div className="relative z-10 mx-auto w-full max-w-6xl text-center">
+
       {/* SECTION 1 */}
       <div className="mx-auto mt-10 max-w-3xl rounded-[2rem] border border-purple-300/20 p-10">
         <h2 className="text-4xl font-light tracking-wide text-white md:text-5xl">
-          What is Spiritual Guidance?
+          Authentic Transformation
         </h2>
 
         <p className="mx-auto mt-8 max-w-2xl text-base leading-8 text-white/90">
-         We are divine beings temporarily having a human experience.
-         Divine consciousness embodied in matter. Your spiritual foundation 
-         is what every other aspect of your life is built on. When this foundation 
-         is strong, you can begin to master your mind and your reality. 
-         Spiritual Guidance helps you expand your consciousness, awareness,
-         and belief potential. The goal is to help you step into your highest 
-         timeline, connect with your higher self, activate all your chakras and create inner harmony.
-         Spiritual Guidance is a one on one virtual session designed to meet you
-         exactly where you are on your path, offering clarity, alignment, and 
-         deeper insight. The sessions are relaxed, stress free, and informal.
-         Wear whatever makes you feel comfortable, whether that is pajamas, sweatpants,
-         or anything else. I also teach breathwork and meditation. 
+          Authentic Transformation is not about becoming someone new. It is about
+          returning to who you truly are beneath conditioning, limiting beliefs,
+          emotional patterns, and inherited identities.
+          <br /><br />
+          Through one-on-one guidance, reflection, self-inquiry, breathwork, and
+          meditation, this work helps you create clarity, reconnect with your
+          authentic self, and begin living from a deeper place of alignment.
         </p>
       </div>
 
       {/* SECTION 2 */}
       <div className="mx-auto mt-10 max-w-3xl rounded-[2rem] border border-purple-300/20 p-10">
         <h2 className="text-4xl font-light tracking-wide text-white md:text-5xl">
-          Why Spiritual Guidance Makes You More Successful
+          What This Work Helps You With
         </h2>
 
         <p className="mx-auto mt-8 max-w-2xl text-base leading-8 text-white/90">
-          Success begins with alignment. When your mind, energy, and intentions are clear,
-          you make better decisions, move with more confidence, and stop wasting energy
-          on paths that pull you away from your purpose. Spiritual Guidance helps you
-          identify internal blocks, strengthen your awareness, and reconnect with the
-          version of yourself that is capable of creating the life you are meant to live.
+          This work is designed to help you gain self-awareness, recognize limiting
+          patterns, strengthen emotional clarity, and reconnect with your purpose.
+          <br /><br />
+          When you are aligned internally, you make better decisions, move with more
+          confidence, and stop living from fear, confusion, or old versions of yourself.
         </p>
       </div>
 
       {/* SECTION 3 */}
       <div className="mx-auto mt-10 max-w-3xl rounded-[2rem] border border-purple-300/20 p-10">
         <h2 className="text-4xl font-light tracking-wide text-white md:text-5xl">
-          How to Approach Spiritual Guidance
+          How to Approach the Session
         </h2>
 
         <p className="mx-auto mt-8 max-w-2xl text-base leading-8 text-white/90">
-          Approach with an open heart and an open mind. Give yourself grace, patience,
-          and honesty as you move through the session. This is a sacred space free from
-          judgment and outside negativity. You do not need to have everything figured out.
-          Come as you are. I am here to help you connect with your inner self, reconnect
-          with Source, and remember who you truly are.
+          Come as you are. You do not need to have everything figured out before the
+          session. This is a grounded, supportive space for honest reflection, deeper
+          awareness, and meaningful transformation.
+          <br /><br />
+          The session is relaxed, conversational, and designed to meet you exactly
+          where you are.
         </p>
       </div>
 
-    {/* Form Step */}
-<div className="mt-10 flex flex-col items-center gap-4">
-
-<button
-  type="button"
-  onClick={goToGuideForm} 
-  className="rounded-full border border-purple-300/40 bg-purple-500/10 px-10 py-4 text-xs uppercase tracking-[0.3em] text-white transition-all duration-500 hover:scale-105 hover:bg-purple-400/20 hover:shadow-[0_0_45px_rgba(168,85,247,0.35)] inline-block"
-> 
-  Fill Out Pre-Alignment Form →
-</button> 
-
-<p className="text-xs text-white/40 mt-2 text-center max-w-sm">
-  Complete the form before your session to get the most out of your experience.
-</p> 
-</div> 
       {/* ESSENCE */}
       <div className="mx-auto mt-16 w-full max-w-5xl px-6">
         <p className="text-xs uppercase tracking-[0.6em] text-white/50">
@@ -952,9 +930,9 @@ return (
 
         <div className="mx-auto mt-10 grid w-full grid-cols-1 gap-8 md:grid-cols-3">
           {[
-            ["✦", "Clarity", "Gain insight into your stream and what may be causing blocks."],
-            ["◎", "Alignment", "Reconnect with your inner wisdom and what truly matters."],
-            ["☾", "Power", "Learn to connect with Source and unlock your divine gifts."],
+            ["✦", "Clarity", "Gain insight into your current patterns and what may be keeping you stuck."],
+            ["◎", "Alignment", "Reconnect with what truly matters and begin making decisions from your authentic self."],
+            ["☾", "Transformation", "Release old identities, beliefs, and emotional patterns that no longer support who you are becoming."],
           ].map(([icon, title, text]) => (
             <div
               key={title}
@@ -976,121 +954,106 @@ return (
         </div>
       </div>
 
-      {/* HOW TO APPROACH */}
-      <div className="mx-auto mt-16 w-full max-w-5xl px-6">
-        <p className="text-xs uppercase tracking-[0.6em] text-white/50">
-          HOW TO APPROACH
+      {/* CTA */}
+      <div className="mt-10 flex flex-col items-center gap-4">
+        <button
+          type="button"
+          onClick={goToGuideForm}
+          className="inline-block rounded-full border border-purple-300/40 bg-purple-500/10 px-10 py-4 text-xs uppercase tracking-[0.3em] text-white transition-all duration-500 hover:scale-105 hover:bg-purple-400/20 hover:shadow-[0_0_45px_rgba(168,85,247,0.35)]"
+        >
+          Apply for a Complimentary Consultation →
+        </button>
+
+        <p className="mt-2 max-w-sm text-center text-xs text-white/40">
+          Complete the form so we can determine if this work is the right fit for you.
         </p>
-
-        <div className="mx-auto mt-10 grid w-full grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-4">
-          {[
-            ["1", "Set Intention"],
-            ["2", "Bring Questions"],
-            ["3", "Be Open"],
-            ["4", "Integrate"],
-          ].map(([num, title]) => (
-            <div key={num} className="flex flex-col items-center text-center">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-purple-300/40 bg-purple-500/20 text-sm text-white">
-                {num}
-              </div>
-
-              <p className="text-xs uppercase tracking-[0.3em] text-white">
-                {title}
-              </p>
-            </div>
-          ))}
-        </div>
       </div>
 
       <button
-        onClick={() => {
-         resetToHome();
-        }}
-        className="mt-12 block text-sm text-white/50 transition hover:text-white"
+        onClick={resetToHome}
+        className="mt-12 block text-sm text-white/50 transition hover:text-white mx-auto"
       >
         ← Back
       </button>
     </div>
   </div>
-) : null} 
+)} 
 
-{activeView === "contact" && ( 
+{activeView === "contact" && (
   <div className="absolute inset-0 z-40 px-6 pt-32 pb-24 text-white">
-
     <div className="mx-auto w-full max-w-2xl rounded-[2rem] border border-purple-300/20 bg-black/30 px-10 py-14 text-center backdrop-blur-md shadow-[0_0_60px_rgba(168,85,247,0.16)]">
+      <h2 className="text-5xl font-light tracking-[0.08em] text-white md:text-6xl">
+        Contact
+      </h2>
 
-     <h2 className="text-5xl font-light tracking-[0.08em] text-white md:text-6xl">
-  Contact
-</h2>
+      <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-white/55">
+        For inquiries, collaborations, or consultation requests, reach out below.
+      </p>
 
-<p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-white/55">
-  For inquiries, collaborations, or guidance requests, reach out below.
-</p>
+      {/* Email */}
+      <div className="mt-14">
+        <p className="text-xs uppercase tracking-[0.35em] text-purple-200/60">
+          Email
+        </p>
 
-{/* Email */}
-<div className="mt-14">
-  <p className="text-xs uppercase tracking-[0.35em] text-purple-200/60">
-    Email
-  </p>
+        <a
+          href="mailto:tjudsonparker@gmail.com"
+          className="mt-4 block text-base text-purple-300 transition hover:text-purple-200 hover:underline"
+        >
+          tjudsonparker@gmail.com
+        </a>
+      </div>
 
-  <a
-    href="mailto:tjudsonparker@gmail.com"
-    className="mt-4 block text-base text-purple-300 transition hover:text-purple-200 hover:underline"
-  >
-    tjudsonparker@gmail.com  
-  </a>
-</div>
+      {/* Divider */}
+      <div className="mx-auto mt-12 h-px w-16 bg-purple-300/30" />
 
-{/* Divider */}
-<div className="mx-auto mt-12 h-px w-16 bg-purple-300/30" />
+      {/* Socials */}
+      <div className="mt-10">
+        <p className="text-xs uppercase tracking-[0.35em] text-purple-200/60">
+          Social
+        </p>
 
-{/* Socials */}
-<div className="mt-10">
-  <p className="text-xs uppercase tracking-[0.35em] text-purple-200/60">
-    Social
-  </p>
+        <div className="mt-6 flex flex-col items-center gap-4 text-sm">
+          <a
+            href="https://instagram.com/tjudsonparker"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 text-white/60 transition hover:text-white"
+          >
+            <FaInstagram className="text-lg" />
+            @tjudsonparker
+          </a>
 
-  <div className="mt-6 flex flex-col items-center gap-4 text-sm">
+          <a
+            href="https://tiktok.com/@judsonparker8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 text-white/60 transition hover:text-white"
+          >
+            <FaTiktok className="text-lg" />
+            @judsonparker8
+          </a>
+        </div>
+      </div>
 
-    <a
-      href="https://instagram.com/tjudsonparker"
-      target="_blank"
-      className="flex items-center gap-3 text-white/60 transition hover:text-white"
-    >
-      <FaInstagram className="text-lg" />
-      @tjudsonparker
-    </a>
-
-    <a
-      href="https://tiktok.com/@judsonparker8"
-      target="_blank"
-      className="flex items-center gap-3 text-white/60 transition hover:text-white"
-    >
-      <FaTiktok className="text-lg" />
-      @judsonparker8
-    </a>
-
-  </div>
-</div>
-
-{/* Back */}
-<button
-  onClick={() => {
-    resetToHome();
-  }}
-  className="mt-14 text-sm text-white/40 transition hover:text-white"
->
-  ← Back 
-</button> 
+      {/* Back */}
+      <button
+        onClick={() => {
+          resetToHome(); 
+        }}
+        className="mt-14 text-sm text-white/40 transition hover:text-white"
+      >
+        ← Back
+      </button>
     </div>
   </div>
-)} 
-     
+)}
 
-   </main>
- </>
+    </main>
+  </>
 );
-} 
+}
+
 export default function Home() {
   return (
     <Suspense fallback={null}>

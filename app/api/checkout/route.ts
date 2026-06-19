@@ -14,6 +14,9 @@ export async function POST(req: Request) {
   }
 
   try {
+    const baseUrl =
+      process.env.NEXT_PUBLIC_BASE_URL || "https://thealignmentfield.com";
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
@@ -37,15 +40,18 @@ export async function POST(req: Request) {
         service: service || "Spiritual Guidance Session",
       },
 
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/?success=true&date=${selectedDate}&time=${encodeURIComponent(
+      success_url: `${baseUrl}/?success=true&date=${selectedDate}&time=${encodeURIComponent(
         selectedTime
       )}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/?canceled=true`,
+      cancel_url: `${baseUrl}/?canceled=true`,
     });
 
     return NextResponse.json({ url: session.url });
-  } catch (err) {
-    console.error("Stripe checkout error:", err);
-    return NextResponse.json({ error: "Stripe error" }, { status: 500 });
+  } catch (err: any) {
+    console.error("Stripe checkout error:", err?.message || err);
+    return NextResponse.json(
+      { error: err?.message || "Stripe error" },
+      { status: 500 }
+    );
   }
 } 
