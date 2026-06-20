@@ -891,6 +891,29 @@ return (
         </p>
       </div>
 
+      {/* PERSONAL ALIGNMENT BLUEPRINT */}
+      <div className="mx-auto mt-10 max-w-3xl rounded-[2rem] border border-purple-300/20 p-10">
+        <h2 className="text-4xl font-light tracking-wide text-white md:text-5xl">
+          The Personal Alignment Blueprint
+        </h2>
+
+        <p className="mx-auto mt-8 max-w-2xl text-base leading-8 text-white/90">
+          The Personal Alignment Blueprint is a personalized framework designed to
+          help you identify where you are out of alignment and create a clear path
+          forward.
+          <br /><br />
+          Together, we explore the core areas of your life including mindset,
+          identity, habits, health, relationships, purpose, and direction.
+          Through reflection, self-inquiry, and practical guidance, we uncover
+          limiting patterns, clarify what truly matters to you, and create a
+          blueprint that aligns your daily actions with the life you want to live.
+          <br /><br />
+          This is not about becoming someone new. It is about creating clarity,
+          strengthening alignment, and building a life that reflects who you
+          truly are.
+        </p>
+      </div>
+
       {/* SECTION 2 */}
       <div className="mx-auto mt-10 max-w-3xl rounded-[2rem] border border-purple-300/20 p-10">
         <h2 className="text-4xl font-light tracking-wide text-white md:text-5xl">
